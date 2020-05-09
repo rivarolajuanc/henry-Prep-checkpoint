@@ -1,0 +1,27 @@
+.classDiv1{
+    display: inline-block;
+    text-align: center;
+    background-color: yellow;
+    margin-top: 100px;
+    margin-left: 100px;
+    margin-bottom: 100px;
+    margin-right: 100px;
+}
+body{   
+    font-size: 25px;
+    color: red;
+    align-content: center;
+}
+.image{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    width: auto;
+    padding: 50px;
+    border: white;
+}
+
+a:visited{
+    color: green;
+}
