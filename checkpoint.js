@@ -7,9 +7,10 @@ function menorMayor(numeros) {
   // Ej: menorMayor([4, 6, 1, 7, 15]) // retorna [1, 15]
   var min = Math.min.apply(null, numeros);
   var max = Math.max.apply(null, numeros);
-  numeros[0] = min;
-  numeros[1] = max;
-  return(console.log(min,max));
+  var nuevoArray = [min,max];
+
+  return nuevoArray;
+  
 }
 
 function stringMasLarga(strings) {
@@ -35,9 +36,9 @@ function buscarAmigo(amigos, nombre) {
   // Ej:
   //  var amigos = [{ nombre: 'toni', edad: 33 } , { nombre: 'Emi', edad: 25 }];
   //  buscarAmigo(amigos, 'toni') // retorna { nombre: 'toni', edad: 33 }
-  var amigos = [{ nombre: 'toni', edad: 33 } , { nombre: 'Emi', edad: 25 }];
-  buscarAmigo(amigos, nombre);
-  
+
+
+
 }
 
 function sumArray(array, n) {
@@ -52,11 +53,12 @@ function sumArray(array, n) {
   suma = 0;
   for(i = 0; i < array.length; i++){
     suma = suma + array[i];
+    
     if(suma === n){
       return true;
-    }
-    else return false;
+    }else return false
   }
+
 }
 
 function pluck(array, propiedad) { 
@@ -67,8 +69,7 @@ function pluck(array, propiedad) {
   // var productos = [{ name: 'TV LCD', price: 100}, { name: 'Computadora', price: 500 }]
   // productos.pluck(productos, 'name') // ['TV LCD', 'Computadora']
   //  pista: es una buena oportunidad para usar map.
-  var nuevoArray = array.map(propiedad);
-  return nuevoArray;
+
 }
 
 // =======================================================================
@@ -92,20 +93,24 @@ function crearClasePersona() {
       // el metodo addFriend recibe un string nombre y un entero edad y debe agregar un objeto:
       // { nombre: nombre, edad: edad} al arreglo de amigos de la persona.
       // no debe retornar nada.
-      
+      const nuevoAmigo = {
+        nombre: nombre,
+        edad: edad
+      }
+      this.amigos.push(nuevoAmigo);
     }
 
     addHobby(hobby) {
       // este método debe agregar un hobby (hobby) al arreglo de hobbies de la persona.
       // no debe retornar nada.
-
+      this.hobbies.push(hobby);
     }
     getFriends() {
       // Escribe una función que retorne un arreglo con sólo los nombres del arreglo de amigos
       // de la persona.
       // Ej:
       // persona.getFriends() // retorna ['toni', 'Leo', 'Manu']
-      
+     
     }
 
     getHobbies() {
