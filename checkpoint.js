@@ -36,9 +36,12 @@ function buscarAmigo(amigos, nombre) {
   // Ej:
   //  var amigos = [{ nombre: 'toni', edad: 33 } , { nombre: 'Emi', edad: 25 }];
   //  buscarAmigo(amigos, 'toni') // retorna { nombre: 'toni', edad: 33 }
-
-
-
+  for(var i = 0; i < amigos.length; i++){
+    if(nombre === amigos[i].nombre){
+      return amigos[i];
+    }
+  }
+  return false;
 }
 
 function sumArray(array, n) {
@@ -49,15 +52,14 @@ function sumArray(array, n) {
   // sumArray([2,5,7,10,11,15,20], 13)  // retorna true     2+11 suman 13
   // sumArray([2,5,7,10,11,15,20], 14)  // retorna false
   // pista: podes usar bucles anidados;
-
-  suma = 0;
-  for(i = 0; i < array.length; i++){
-    suma = suma + array[i];
-    
-    if(suma === n){
-      return true;
-    }else return false
+  for(var i = 0; i < array.length; i++){
+    for(var j = i;j < array.length;j++){
+        if(array[i] + array[j+1] === n){
+            return true;
+        }
+    }
   }
+  return false;
 
 }
 
@@ -69,7 +71,10 @@ function pluck(array, propiedad) {
   // var productos = [{ name: 'TV LCD', price: 100}, { name: 'Computadora', price: 500 }]
   // productos.pluck(productos, 'name') // ['TV LCD', 'Computadora']
   //  pista: es una buena oportunidad para usar map.
-
+  var nuevoArray = array.map(function(curr){
+    return curr[propiedad];
+  })
+  return nuevoArray;
 }
 
 // =======================================================================
@@ -110,14 +115,17 @@ function crearClasePersona() {
       // de la persona.
       // Ej:
       // persona.getFriends() // retorna ['toni', 'Leo', 'Manu']
-     
+     var nombresAmigos = this.amigos.map(function(curr){
+      return curr.nombre;
+     })
+     return nombresAmigos;
     }
 
     getHobbies() {
       // Escribe una función que retorne un arreglo con los hobbies de la persona
       // Ej:
       // persona.getHobbies() // retorna ['correr', 'dormir', 'nadar']
-
+      return this.hobbies;
     }
 
     getPromedioEdad() {
@@ -134,12 +142,10 @@ function crearClasePersona() {
       // }
       // persona.getPromedioEdad() // retorna 29
 
-      var sumatoriaObjeto = this.amigos.reduce(function(acumulador, siguienteValor){
-        return {
-          edad: acumulador.edad + siguienteValor.edad
-        };
-      }, {edad: 0}); 
-      var promedioEdad = sumatoriaObjeto.edad / this.amigos.length;
+      var suma = this.amigos.reduce(function(acumulador, valorActual){
+        return acumulador + valorActual.edad;
+      }, 0); 
+      var promedioEdad = suma / this.amigos.length;
       return promedioEdad;
     }
   };
